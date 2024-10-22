@@ -20,20 +20,20 @@ int inputInt(int max)
 void game()
 {
     Console.WriteLine("Player 1 pick your pokemon\n1: Castform sunny form\n2: Gorebyss\n3: Jumpluff\n4: Teddirusa");
-    Player player1;
+    Pokemon player1;
     switch (inputInt(4))
     {
         case 1:
-            player1 = new Player(fire);
+            player1 = fire;
             break;
         case 2:
-            player1 = new Player(water);
+            player1 = water;
             break;
         case 3:
-            player1 = new Player(grass);
+            player1 = grass;
             break;
         default:
-            player1 = new Player(normal);
+            player1 = normal;
             break;
     }
 

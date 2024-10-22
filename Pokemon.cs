@@ -15,31 +15,30 @@ namespace game1401_la_starter
         private int damage;
         private string name;
         private Enum type;
-        private Enum weakness;
+        private Enum effective;
 
-        public Pokemon(int HP, int _damage, string _name, Enum _type, Enum _weakness)
+        public Pokemon(int HP, int _damage, string _name, Enum _type, Enum _effective)
         {
             maxHealth = HP;
             health = HP;
             name = _name;
             type = _type;
-            weakness = _weakness;
+            effective = _effective;
             damage = _damage;
         }
 
-        public bool takeDamage(Enum attackerType, int damageTaken)
+        public bool attack(Pokemon target)
         {
-
-            if (string.Equals(weakness.ToString(), attackerType.ToString(), StringComparison.OrdinalIgnoreCase))
+            if (target.getType() == effective)
             {
-                health -= damageTaken * 2;
+                target.takeDamage(damage*2);
             }
             else
             {
-                health -= damageTaken;
+                target.takeDamage(damage);
             }
 
-            if (health > 0)
+            if (target.health > 0)
             {
                 return true;
             }
@@ -64,6 +63,15 @@ namespace game1401_la_starter
             return damage;
         }
 
+        public void takeDamage(int _damage)
+        {
+            health -= _damage;
+        }
+
+        public int getHealth()
+        {
+            return health;
+        }
         public void heal(int healing)
         {
             health += healing;
