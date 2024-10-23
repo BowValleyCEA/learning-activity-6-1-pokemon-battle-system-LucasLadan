@@ -16,6 +16,7 @@ namespace game1401_la_starter
         private string name;
         private Enum type;
         private Enum effective;
+        private bool burned;
 
         public Pokemon(int HP, int _damage, string _name, Enum _type, Enum _effective)
         {
@@ -25,20 +26,23 @@ namespace game1401_la_starter
             type = _type;
             effective = _effective;
             damage = _damage;
+            burned = false;
         }
 
         public bool attack(Pokemon target)
         {
-            if (target.getType() == effective)
+            if (string.Equals(effective.ToString(),target.getType().ToString()))
             {
+                Console.WriteLine("Super effective! They took " + (damage * 2) + " damage!");
                 target.takeDamage(damage*2);
             }
             else
             {
+                Console.WriteLine("They took " + damage + " damage!");
                 target.takeDamage(damage);
             }
 
-            if (target.health > 0)
+            if (target.getHealth() > 0)
             {
                 return true;
             }
@@ -72,6 +76,11 @@ namespace game1401_la_starter
         {
             return health;
         }
+
+        public bool isBurned()
+        {
+            return burned;
+        }
         public void heal(int healing)
         {
             health += healing;
@@ -80,5 +89,11 @@ namespace game1401_la_starter
                 health = maxHealth;
             }
         }
+
+        public void setBurn (bool burning)
+        {
+            burned = burning;
+        }
+
     }
 }

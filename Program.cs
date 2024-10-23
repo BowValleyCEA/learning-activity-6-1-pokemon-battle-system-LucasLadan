@@ -1,8 +1,8 @@
 ﻿using game1401_la_starter;
 
-Pokemon fire = new Pokemon(70, 10, "Castform", Type.fire, Type.water);
-Pokemon water = new Pokemon(55,16,"Gorebyss",Type.water, Type.grass);
-Pokemon grass = new Pokemon(75, 8, "Jumpluff", Type.grass, Type.fire);
+FireType fire = new FireType(70, 10, "Castform", Type.fire, Type.grass);
+Pokemon water = new Pokemon(55,16,"Gorebyss",Type.water, Type.fire);
+Pokemon grass = new Pokemon(75, 8, "Jumpluff", Type.grass, Type.water);
 Pokemon normal = new Pokemon(60, 14, "Teddiursa",Type.normal,Type.none);
 game();
 int inputInt(int max)
@@ -38,20 +38,20 @@ void game()
     }
 
     Console.WriteLine("Player 2 pick your pokemon\n1: Castform sunny form\n2: Gorebyss\n3: Jumpluff\n4: Teddirusa");
-    Player player2;
+    Pokemon player2;
     switch (inputInt(4))
     {
         case 1:
-            player2 = new Player(fire);
+            player2 = fire;
             break;
         case 2:
-            player2 = new Player(water);
+            player2 = water;
             break;
         case 3:
-            player2 = new Player(grass);
+            player2 = grass;
             break;
         default:
-            player2 = new Player(normal);
+            player2 = normal;
             break;
     }
 
@@ -61,42 +61,50 @@ void game()
     do
     {
 
-        player1.GetPokemon().printHealth();
-        player2.GetPokemon().printHealth();
+        if (player1.isBurned())
+        {
+            player1.takeDamage(4);
+        }
 
-        Console.WriteLine("Player 1 what are you going to do\n1: Attack\n2: Use an item (You currently have "
-            +player1.getItemCount()+" items)\n3: Run");
+        if (player2.isBurned())
+        {
+            player2.takeDamage(4);
+        }
+
+        player1.printHealth();
+        player2.printHealth();
+
+        Console.WriteLine("Player 1 what are you going to do\n1: Attack\n2: Heal\n3: Run");
 
         switch (inputInt(3))
         {
             case 1:
-                noFaints = player2.takeDamage(player1.GetPokemon());
+                noFaints = player1.attack(player2);
                 break;
             case 2:
-                player1.healPokemon();
+                player1.heal(20);
                 break;
             default:
-                Console.WriteLine("You can't run from a trainer battle!");
+                Console.WriteLine("You can't take the cowards way out");
                 break;
         }
 
         if (noFaints)
         {
-            player1.GetPokemon().printHealth();
-            player2.GetPokemon().printHealth();
-            Console.WriteLine("Player 2 what are you going to do\n1: Attack\n2: Use an item (You currently have "
-            + player1.getItemCount() + " items)\n3: Run");
+            player1.printHealth();
+            player2.printHealth();
 
+            Console.WriteLine("Player 2 what are you going to do\n1: Attack\n2: Heal\n3: Run");
             switch (inputInt(3))
             {
                 case 1:
-                    noFaints = player1.takeDamage(player2.GetPokemon());
+                    noFaints = player2.attack(player1);
                     break;
                 case 2:
-                    player2.healPokemon();
+                    player2.heal(20);
                     break;
                 default:
-                    Console.WriteLine("You can't run from a trainer battle!");
+                    Console.WriteLine("You can't take the cowards way out");
                     break;
             }
         }
