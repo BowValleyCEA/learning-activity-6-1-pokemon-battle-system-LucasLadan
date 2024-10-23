@@ -63,11 +63,13 @@ void game()
 
         if (player1.isBurned())//Checking if the player is burned
         {
+            Console.WriteLine(player1.getName()+" took 4 damage from burn");
             player1.takeDamage(4);//Taking damage if their burned
         }
 
         if (player2.isBurned())
         {
+            Console.WriteLine(player2.getName() + " took 4 damage from burn");
             player2.takeDamage(4);
         }
 

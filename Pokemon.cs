@@ -59,6 +59,11 @@ namespace game1401_la_starter
             return type;
         }
 
+        public string getName()
+        {
+            return name;
+        }
+
         public void printHealth()
         {
             Console.WriteLine(name+"'s health:"+health+"/"+maxHealth);

@@ -20,6 +20,7 @@ namespace game1401_la_starter
             if (random.Next(1, 5) == 3)
             {
                 setDamage(getDamage()+1);
+                Console.WriteLine(getName()+" gain 1 damage");
             }
 
             if (string.Equals(getEffective().ToString(), target.getType().ToString()))

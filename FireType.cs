@@ -21,6 +21,7 @@ namespace game1401_la_starter
             if (random.Next(1,5) == 3)
             {
                 target.setBurn(true);
+                Console.WriteLine(target.getName() + " is now burned");
             }
 
             if (string.Equals(getEffective().ToString(), target.getType().ToString()))
