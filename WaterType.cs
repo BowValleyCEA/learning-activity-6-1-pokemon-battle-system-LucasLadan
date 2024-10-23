@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace game1401_la_starter
 {
-    internal class FireType : Pokemon
+    internal class WaterType : Pokemon
     {
-
         private int maxHealth;
         private int health;
         private int damage;
@@ -18,7 +16,7 @@ namespace game1401_la_starter
         private Enum effective;
         private bool burned;
 
-        public FireType(int HP, int _damage, string _name, Enum _type, Enum _effective) : base(HP, _damage, _name, _type, _effective)
+        public WaterType(int HP, int _damage, string _name, Enum _type, Enum _effective) : base(HP, _damage, _name, _type, _effective)
         {
         }
 
@@ -26,9 +24,9 @@ namespace game1401_la_starter
         {
             Random random = new Random();
 
-            if (random.Next(1,5) == 3)
+            if (random.Next(1, 5) == 3)
             {
-                target.setBurn(true);
+                damage += 1;
             }
 
             if (string.Equals(effective.ToString(), target.getType().ToString()))
@@ -52,4 +50,5 @@ namespace game1401_la_starter
             }
         }
     }
+}
 }
